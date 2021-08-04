@@ -1,43 +1,243 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Title</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  </head>
-  <body>
-    <ul id="users"></ul>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js' integrity='sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==' crossorigin='anonymous'></script>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--     <script type="text/javascript" src="test8.json"></script>
+ -->
+</head>
+<style>
+    * {
+        font-family: Arial;
+    }
+    input {
+        height: 30px;
+        border: #dde1e7 2px solid;
+        border-radius: 3px;
+    }
+    #savebtn {
+        color: white;
+        background-color: #21cad6;
+        border: none;
+        height: 35px;
+        width: 50px;
+        border-radius: 3px;
+    }
+    ul {
+        padding: 0px;
+    }
+    li {
+        margin: 10px 0;
+        list-style: none;
+        display: flex;
+        justify-items: center;
+    }
+    li div {
+        display: flex;
+        align-items: center;
+        text-align: center;
+    }
+    .id {
+        width: 18px;
+        margin: 0 32px;
+    }
+    .user {
+        width: 90px;
+        margin: 0 28px;
+    }
+    .password {
+        width: 70px;
+        margin: 0 38px;
+    }
+    #delete {
+        margin-left: 38px;
+        width: 60px;
+        height: 35px;
+        color: white;
+        text-align: center;
+        background-color: #e4384f;
+        border-radius: 3px;
+        border: 1px #d83349 solid;
+    }
+    #edit {
+        width: 50px;
+        height: 35px;
+        margin-left: 5px;
+        color: white;
+        text-align: center;
+        background-color: #1ea5ff;
+        border-radius: 3px;
+        border: 1px #1ea5ff solid;
+    }
+</style>
+
+<!-- <script>
+    let name = document.getElementsByName("userName").value.trim();
+    let password = document.getElementsByName("password").value.trim();
+    let save = document.querySelector('button');
+    let ul = document.querySelector("ul");
+
+    const save = () => {    
+    if (!name || !password) {
+        return false;
+    }
+    else {
+        let li = document.createElement('li');
+        li.innerHTML = name.value + password.value + '<button href="javascript:;">Delete</button>' + '<button href="javascript:;">Edit</button>';
+    }
+}
+</script> -->
+
+<body>
+    <div id="text" style="width: 400px; margin-left: 100px;">
+        <input type="text" placeholder="User Name" name="userName" id="userName">
+        <input type="text" placeholder="Password" name="password" id="password">
+        <button id="savebtn">Save</button>
+    </div>
+    <div style="display: flex; justify-items: center; justify-content: space-around; width: 500px;">
+        <h3>Id</h3>
+        <h3>User Name</h3>
+        <h3>Password</h3>
+        <h3>Action</h3>
+    </div>
+
+    <hr>
+    <ul id="users">
+
+    </ul>
+
     <script>
-        $(function() {
 
+        let id = 1;
+        let ul = document.querySelector('ul');
+        let name = document.querySelector('#userName');
+        let password = document.querySelector('#password');
+        let save = document.querySelector('#savebtn');
+    
+        save.onclick = function () {
+            if (name.value == '' && password.value == '') {
+                return false;
+            } else {
+                //1.建立li
+                let li = document.createElement("li");
+                let div1 = document.createElement("div");
+                let div2 = document.createElement("div");
+                let div3 = document.createElement("div");
+                let div4 = document.createElement("div");
+                let d = document.createElement("button");
+                let edit = document.createElement("button");
+                //先有li 再賦值
+                // li.innerHTML = id + name.value + password.value + '<button href="javascript:;">Delete</button>' + '<button href="javascript:;">Edit</button>';
+                // li.innerHTML = id + name.value + password.value;
+                div1.textContent = id;
+                div1.className = "id";
+                div2.textContent = name.value;
+                div2.className = "user";
+                div3.textContent = password.value;    
+                div3.className = "password";
+                d.textContent = "Delete";
+                d.id = "delete";
+                edit.textContent = "Edit";
+                edit.id = "edit";
+                //2.新增li
+                ul.appendChild(li);
+                li.appendChild(div1);
+                li.appendChild(div2);
+                li.appendChild(div3);
+                li.appendChild(d);
+                li.appendChild(edit);
+                id++;
+                //3.刪除元素 刪除當前連結的li 他的父親
+                let del = document.querySelectorAll('#delete');
+                for (let i = 0; i < del.length; i++) {
+                    del[i].onclick = function () {
+                        // 刪除當前a的父親li  li的父親是ul 
+                        //刪除節點語法 父節點.removeChild(子節點)
+                        ul.removeChild(this.parentNode);
+                    }
+                }
+            }
+    
+        }
+    
+    </script>
+
+    <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js' </scrip>
+        <script>
+            $(function () {
+
+                $.ajax({
+                    url: 'http://localhost:3000/users',
+                    method: 'get',
+                    dataType: 'json',
+                    data: {}
+                }).done(function (res) {
+                    console.log(res)
+                    $('#users').empty()
+                    res.forEach(element = (user) => {
+                        $('#users').append('<li>' + user.id + '/' + user.userName + '/' + user.password + '<button>Delete</button>' + '<button>Edit</button>')
+                    })
+                }).fail(function (err) {
+                    console.log(err)
+                })
+
+            $('#save > button').on('click', function () {
+                let name = $('#save > input[name=userName]').val().trim();
+            if (!name) return false;
+                let password = $('#save > input[name=password]').val().trim();
+            if (!password) return false;
             $.ajax({
-                url:'http://localhost:3000/users',
-                method: 'get',
-                dataType: 'json',
-                data: {}
-            }).done(function(res) {
+                url: 'http://localhost:3000/users',
+            method: 'post',
+            dataType: 'json',
+            data: {
+                userName: name,
+            password: password
+
+                    }
+                })
+            })
+
+            $('#delete > button').on('click', function () {
+                let id = $('#delete > input').val().trim();
+            if (!id) return false;
+            $.ajax({
+                url: 'http://localhost:3000/users/' + id,
+            method: 'delete',
+            dataType: 'json'
+                }).done(function (res) {
                 console.log(res)
-            }).fail(function(err) {
+            }).fail(function (err) {
                 console.log(err)
+            })
+            })
+
+            $('#update > button').on('click', function () {
+                let id = $('#update > input[name=id]').val().trim();
+            if (!id) return false;
+                let name = $('#update > input[name=name]').val().trim();
+            if (!name) return false;
+            $.ajax({
+                url: 'http://localhost:3000/users/' + id,
+            method: 'patch',
+            dataType: 'json',
+            data: {
+                name: name
+                    }
+                })
             })
         })
     </script>
-    <div>
-        <p>
-            <input placeholder="User Name">
-            <input placeholder="Password">
-            <button type="button" class="btn btn-info">Save</button>
-        </p>
+
+    <div id="delete">
+        <button href="javascript:;">delete</button>
     </div>
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  </body>
+    <div id="update">
+        <button href="javascript:;">update</button>
+    </div> -->
+</body>
+
 </html>
