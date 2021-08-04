@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1.數字處理[里程計算]</title>
+    <script src="test1.js"></script>
+</head>
+<body>
+    <h1>1.數字處理[里程計算]</h1>
+    <p>設計議程是，提示使用者輸入計程車里程，並計算費用後顯示於螢幕。</p>
+    <p>里程計算方法如下：</p>
+    <table border="1" width="450" height="120" style="border-collapse: collapse;">
+        <tr>
+            <td>里程(公尺)</td><td>費用</td>
+        </tr>
+        <tr>
+            <td>&lt;1500</td><td>70元</td>
+        </tr>
+        <tr>
+            <td>&gt;1500</td><td>每多500公尺+5元</td>
+        </tr>
+        <tr>
+            <td colspan="2">*不足500公尺以500公尺計算</td>
+        </tr>
+    </table>
+    <p>請輸入里程(公里)[小數點可精確至公尺]:
+        <input type="text" id="text" style="width: 50px;">
+        <button onclick="text()">計算</button>
+    </p>
+    <p>車資=<span id="price"></span></p>
+</body>
+</html>

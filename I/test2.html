@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.身分證檢驗</title>
+    <script src="test2.js"></script>
+</head>
+<body>
+    <h1>2.身分證檢驗</h1>
+    <p>我國的身分證字號有底下這樣的規則，因此對於任意輸入的身分證字號可以有一些基本的判斷原則，請您來判斷一個身分證字號是否是正常的號碼(不代表確有此號、此人)。</p>
+    <p>(1) 英文代號以下表轉換成數字</p>
+    <table width="350">
+        <tr>
+            <td>A=10 台北市</td><td>J=18 新竹縣</td><td>S=26 高雄縣</td>
+        </tr>
+        <tr>
+            <td>B=11 台中市</td><td>K=19 苗栗縣</td><td>T=27 屏東縣</td>
+        </tr>
+        <tr>
+            <td>C=12 基隆市</td><td>L=20 台中縣</td><td>U=28 花蓮縣</td>
+        </tr>
+        <tr>
+            <td>D=13 台南市</td><td>M=21 南投縣</td><td>V=29 台東縣</td>
+        </tr>
+        <tr>
+            <td>E=14 高雄市</td><td>N=22 彰化縣</td><td>W=32 金門縣</td>
+        </tr>
+        <tr>
+            <td>F=15 台北縣</td><td>O=35 新竹市</td><td>X=30 澎湖縣</td>
+        </tr>
+        <tr>
+            <td>G=16 宜蘭縣</td><td>P=23 雲林縣</td><td>Y=31 陽明山</td>
+        </tr>
+        <tr>
+            <td>H=17 桃園縣</td><td>Q=24 嘉義縣</td><td>Z=33 連江縣</td>
+        </tr>
+        <tr>
+            <td>I=34 嘉義市</td><td>R=25 台南縣</td><td></td>
+        </tr>
+    </table>
+    <p>(2) 英文轉成的數字, 個位數乘9再加上十位數的數字</p>
+    <p>(3) 各數字從右到左依次乘1、2、3、4．．．．8</p>
+    <p>(4) 求出(2),(3) 及最後一碼的和</p>
+    <p>(5) (4)除10 若整除，則為 real，否則為 fake</p>
+    <p>例： T112663836</p>
+    <p>2 + 7*9 + 1*8 + 1*7 + 2*6 + 6*5 + 6*4 + 3*3 + 8*2 + 3*1 + 6 = 180</p>
+    <p>除以 10 整除，因此為 real</p>
+    <p>請輸入身份證字號：
+        <input type="text" id="text">
+        <button onclick="text()">驗證</button>
+    </p>
+    <p id="result"></p>
+</body>
+</html>
