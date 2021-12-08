@@ -1,5 +1,8 @@
-const change = () =>{
-    var decimal = document.getElementById("decimal").value;
-    var binary = document.getElementById("binary").value;
-    var octal = document.getElementById("octal").value;    
+{
+    let decimal = document.getElementById("decimal").value;
+    let binary = document.getElementById("binary").value;
+    let octal = document.getElementById("octal").value;
+    let hex = document.getElementById("hex").value;
+
+
 }

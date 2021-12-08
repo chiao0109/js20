@@ -6,55 +6,91 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <!--     <script type="text/javascript" src="test8.json"></script>
- -->
 </head>
 <style>
     * {
-        font-family: Arial;
+        font-family: Arial, Microsoft YaHei;
+        letter-spacing: 1px;
     }
+
+    #wrapper {
+        width: 570px;
+        margin: 0px auto;
+        padding: 1px;
+        background: #f7f6f3;
+    }
+
+    #text {
+        width: 420px;
+        margin: 10px auto 0 auto;
+    }
+    
     input {
         height: 30px;
         border: #dde1e7 2px solid;
         border-radius: 3px;
+        padding-left: 5px;
     }
-    #savebtn {
+
+    #savebtn,
+    #search {
         color: white;
         background-color: #21cad6;
         border: none;
-        height: 35px;
-        width: 50px;
+        height: 34px;
+        width: 55px;
         border-radius: 3px;
     }
+
+    #search {
+        width: 70px;
+        background-color: #eb6f50;
+    }
+
     ul {
         padding: 0px;
+        margin: 0px;
     }
+
     li {
-        margin: 10px 0;
+        margin: 0px;
         list-style: none;
         display: flex;
         justify-items: center;
+        border-bottom: 1.5px #E0DFD5 solid;
+        margin: 5px 0px;
+        padding-bottom: 5px;
     }
+
     li div {
         display: flex;
         align-items: center;
         text-align: center;
     }
+
     .id {
-        width: 18px;
-        margin: 0 32px;
+        width: 20px;
+        margin: 0 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        justify-items: center;
+        text-align: center;
     }
+
     .user {
         width: 90px;
-        margin: 0 28px;
+        margin: 0 34px;
     }
-    .password {
+
+    #password {
         width: 70px;
-        margin: 0 38px;
+        margin: 0 36px;
     }
+
     #delete {
-        margin-left: 38px;
-        width: 60px;
+        margin-left: 40px;
+        width: 65px;
         height: 35px;
         color: white;
         text-align: center;
@@ -62,61 +98,112 @@
         border-radius: 3px;
         border: 1px #d83349 solid;
     }
+
     #edit {
-        width: 50px;
+        width: 65px;
         height: 35px;
-        margin-left: 5px;
+        margin-left: 10px;
         color: white;
         text-align: center;
-        background-color: #1ea5ff;
+        /* background-color: #1ea5ff; */
+        background-color: #1e9ff5;
         border-radius: 3px;
-        border: 1px #1ea5ff solid;
+        border: 1px #1e9ff5 solid;
     }
+
+    hr {
+        height: 2.5px;
+        background: #E0DFD5;
+        border: none;
+        margin: 0px;
+    }
+
+    h3 {
+        height: 30px;
+        margin: 0;
+        display: flex;
+        align-items: center;
+    }
+
+    #find {
+        margin-left: 150px;
+        margin-right: 15px;
+    }
+
+    div {
+        margin: 10px 0px;
+    }
+
+    #data {
+        margin: 0 auto;
+        width: 240px;
+    }
+
+    #new {
+        width: 100px;
+        margin-left: -3px;
+    }
+    #cancel {
+        margin-left: 40px;
+        width: 65px;
+        height: 35px;
+        color: white;
+        text-align: center;
+        /* background-color: #5578d8; */
+        border-radius: 3px;
+        /* border: 1px #6c8bdf solid; */
+        background-color: #ff2c5a;
+/*         border: 1px #cc4254 solid;
+ */    }
+    #ok {
+        width: 65px;
+        height: 35px;
+        margin-left: 10px;
+        color: white;
+        text-align: center;
+        /* background-color: #e74c99; */
+        border-radius: 3px;
+        /* border: 1px #f06aad solid; */
+        background-color: #00aeff;
+/*         border: 1px #0099ff solid;
+ */    }
 </style>
 
-<!-- <script>
-    let name = document.getElementsByName("userName").value.trim();
-    let password = document.getElementsByName("password").value.trim();
-    let save = document.querySelector('button');
-    let ul = document.querySelector("ul");
-
-    const save = () => {    
-    if (!name || !password) {
-        return false;
-    }
-    else {
-        let li = document.createElement('li');
-        li.innerHTML = name.value + password.value + '<button href="javascript:;">Delete</button>' + '<button href="javascript:;">Edit</button>';
-    }
-}
-</script> -->
-
 <body>
-    <div id="text" style="width: 400px; margin-left: 100px;">
-        <input type="text" placeholder="User Name" name="userName" id="userName">
-        <input type="text" placeholder="Password" name="password" id="password">
-        <button id="savebtn">Save</button>
+    <div id="wrapper">
+        <div id="text">
+            <input type="text" placeholder="User Name" name="userName" id="userName">
+            <input type="text" placeholder="Password" name="password" id="inputpassword">
+            <button id="savebtn">Save</button>
+        </div>
+        <div style="display: flex; justify-items: center; justify-content: space-around; width: 500px; height: 30px;">
+            <h3>Id</h3>
+            <h3>User Name</h3>
+            <h3>Password</h3>
+            <h3>Action</h3>
+        </div>
+
+        <hr>
+        <ul id="users">
+
+        </ul>
+        <div>
+            <input type="text" id="find" placeholder="Id">
+            <button id="search" onclick="search(this.id)">Search</button>
+        </div>
+        <p id="data"></p>
     </div>
-    <div style="display: flex; justify-items: center; justify-content: space-around; width: 500px;">
-        <h3>Id</h3>
-        <h3>User Name</h3>
-        <h3>Password</h3>
-        <h3>Action</h3>
-    </div>
-
-    <hr>
-    <ul id="users">
-
-    </ul>
-
     <script>
 
         let id = 1;
+        let json = {
+            "users": []
+        };
         let ul = document.querySelector('ul');
         let name = document.querySelector('#userName');
-        let password = document.querySelector('#password');
+        let password = document.querySelector('#inputpassword');
         let save = document.querySelector('#savebtn');
-    
+
         save.onclick = function () {
             if (name.value == '' && password.value == '') {
                 return false;
@@ -126,8 +213,7 @@
                 let div1 = document.createElement("div");
                 let div2 = document.createElement("div");
                 let div3 = document.createElement("div");
-                let div4 = document.createElement("div");
-                let d = document.createElement("button");
+                let del = document.createElement("button");
                 let edit = document.createElement("button");
                 //先有li 再賦值
                 // li.innerHTML = id + name.value + password.value + '<button href="javascript:;">Delete</button>' + '<button href="javascript:;">Edit</button>';
@@ -136,10 +222,10 @@
                 div1.className = "id";
                 div2.textContent = name.value;
                 div2.className = "user";
-                div3.textContent = password.value;    
-                div3.className = "password";
-                d.textContent = "Delete";
-                d.id = "delete";
+                div3.textContent = password.value;
+                div3.id = "password";
+                del.textContent = "Delete";
+                del.id = "delete";
                 edit.textContent = "Edit";
                 edit.id = "edit";
                 //2.新增li
@@ -147,97 +233,66 @@
                 li.appendChild(div1);
                 li.appendChild(div2);
                 li.appendChild(div3);
-                li.appendChild(d);
+                li.appendChild(del);
                 li.appendChild(edit);
+                json["users"].push({ "id": id, "name": name.value, "password": password.value })
                 id++;
+                console.log(li)
+                console.log(json)
                 //3.刪除元素 刪除當前連結的li 他的父親
-                let del = document.querySelectorAll('#delete');
-                for (let i = 0; i < del.length; i++) {
-                    del[i].onclick = function () {
+                let delbtn = document.querySelectorAll('#delete');
+                for (let i = 0; i < delbtn.length; i++) {
+                    delbtn[i].onclick = function () {
                         // 刪除當前a的父親li  li的父親是ul 
                         //刪除節點語法 父節點.removeChild(子節點)
                         ul.removeChild(this.parentNode);
+                        console.log(delbtn[i])
                     }
                 }
+                let editbtn = document.querySelectorAll('#edit');
+                for (let i = 0; i < editbtn.length; i++) {
+
+                    editbtn[i].onclick = function () {
+                        document.getElementById("password").innerHTML = "<input type='text' id='new'>";
+                        document.getElementById("edit").innerHTML = "OK";
+                        document.getElementById("delete").innerHTML = "Cancel";
+                        document.getElementById("edit").id = "ok";
+                        document.getElementById("delete").id = "cancel";                 }
+                }
+                let okbtn = document.querySelector("#ok");
+                    okbtn.onclick = function () {
+                        let newPassword = document.getElementById("new").textContent;
+                        document.getElementById("new").innerHTML = newPassword;
+                        document.getElementById("ok").innerHTML = "Edit";
+                        document.getElementById("cancel").innerHTML = "Delete";
+                        document.getElementById("ok").id = "edit";
+                        document.getElementById("cancel").id = "delete";
+                    }
+
+                search = (id) => {
+                    console.log(id)
+                    if (id == "search") {
+                        searchId = document.getElementById("find").value;
+                    }
+                    for (i = 0; i < json["users"].length; i++) {
+                        if (json["users"][i].id == searchId) {
+                            document.getElementById("data").innerHTML = "Id:" + json["users"][i].id + "<p>User Name:" + json["users"][i].name + "<p>Password:" + json["users"][i].password;
+                        }
+                        /* else {
+                            document.getElementById("data").innerHTML = "查無此人";
+                        } */
+                        console.log(json["users"][i].id)
+
+                    }
+
+                }
+
             }
-    
         }
-    
+
     </script>
 
-    <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js' </scrip>
-        <script>
-            $(function () {
 
-                $.ajax({
-                    url: 'http://localhost:3000/users',
-                    method: 'get',
-                    dataType: 'json',
-                    data: {}
-                }).done(function (res) {
-                    console.log(res)
-                    $('#users').empty()
-                    res.forEach(element = (user) => {
-                        $('#users').append('<li>' + user.id + '/' + user.userName + '/' + user.password + '<button>Delete</button>' + '<button>Edit</button>')
-                    })
-                }).fail(function (err) {
-                    console.log(err)
-                })
-
-            $('#save > button').on('click', function () {
-                let name = $('#save > input[name=userName]').val().trim();
-            if (!name) return false;
-                let password = $('#save > input[name=password]').val().trim();
-            if (!password) return false;
-            $.ajax({
-                url: 'http://localhost:3000/users',
-            method: 'post',
-            dataType: 'json',
-            data: {
-                userName: name,
-            password: password
-
-                    }
-                })
-            })
-
-            $('#delete > button').on('click', function () {
-                let id = $('#delete > input').val().trim();
-            if (!id) return false;
-            $.ajax({
-                url: 'http://localhost:3000/users/' + id,
-            method: 'delete',
-            dataType: 'json'
-                }).done(function (res) {
-                console.log(res)
-            }).fail(function (err) {
-                console.log(err)
-            })
-            })
-
-            $('#update > button').on('click', function () {
-                let id = $('#update > input[name=id]').val().trim();
-            if (!id) return false;
-                let name = $('#update > input[name=name]').val().trim();
-            if (!name) return false;
-            $.ajax({
-                url: 'http://localhost:3000/users/' + id,
-            method: 'patch',
-            dataType: 'json',
-            data: {
-                name: name
-                    }
-                })
-            })
-        })
-    </script>
-
-    <div id="delete">
-        <button href="javascript:;">delete</button>
-    </div>
-    <div id="update">
-        <button href="javascript:;">update</button>
-    </div> -->
 </body>
 
 </html>

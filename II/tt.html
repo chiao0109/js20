@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    Name:<input type="text" id="name" placeholder="請輸入姓名"><br>
+    Email:<input type="text" id="email" placeholder="請輸入信箱"><br>
+    Content:<br><textarea rows="10" cols="40" id="content"></textarea><br>
+    <button onclick="add()">新增</button><br>
+    Email:<input type="text" id="find_email" placeholder="請輸入信箱"> <button id="find"
+        onclick="find(this.id)">查詢</button><br>
+    <output id="out_find"></output><br>
+    <button onclick="test()">TEST</button>
+
+    <script>
+        json_info = {
+            "chat": []
+        };
+        function add() {
+            user_name = document.getElementById("name").value
+            email = document.getElementById("email").value
+            content = document.getElementById("content").value
+
+            json_info["chat"].push({ "name": user_name, "email": email, "content": content })
+        }
+        function test() {
+            console.log(json_info)
+            out_table = document.getElementById("out_table").rows
+            console.log(out_table)
+            out_cell = document.getElementById("out_table").rows[1].cells
+            console.log(out_cell)
+            key_email = document.getElementById("out_table").rows[1].cells[1].innerHTML
+            console.log(key_email)
+        }
+        function find(id) {
+            temp = "<table id='out_table'<tr><td>Name</td><td>Email</td><td>Content</td><td>Action</td></tr>"
+            if (id == "find") {
+                find_email = document.getElementById("find_email").value
+            }
+            else {
+                find_email = rm_email
+            }
+            num = 0
+            function_id = 1
+            for (i = 0; i < json_info["chat"].length; i++) {
+                if (json_info["chat"][i].email == find_email) {
+                    temp += "<tr>"
+                    num = 1
+                    temp = temp + "<td>" + json_info["chat"][i].name + "</td>"
+                    temp = temp + "<td>" + json_info["chat"][i].email + "</td>"
+                    temp = temp + "<td>" + json_info["chat"][i].content + "</td>"
+                    temp = temp + "<td><button onclick='c_delete(this.id)' id='delete" + " " + function_id + "'>刪除</button>"
+                    temp = temp + "<button onclick='edit(this.id)' id='edit" + " " + function_id + "'>編輯</button></td></tr>"
+                    document.getElementById("out_find").innerHTML = temp
+                    function_id++
+                }
+
+            }
+            if (num == 0) {
+                temp += "<tr><td>"
+                temp = temp + "查無資料" + "</td><tr>"
+                document.getElementById("out_find").innerHTML = temp
+            }
+        }
+        var X_obj
+        var Y_obj
+        edit_id = ""
+        delete_id = ""
+        cun_id = 0
+        function edit(id) {
+            console.log(id)
+            out_table = document.getElementById("out_table").rows
+            console.log(out_table)
+            id = id.split(' ')
+            id = id[1]
+            e_id = "edit " + id
+            d_id = "delete " + id
+            edit_id = e_id
+            delete_id = d_id
+            parseInt(id)
+            cun_id = id
+            X_obj = document.getElementById(e_id)
+            console.log(X_obj)
+            Y_obj = document.getElementById(d_id)
+            for (i = 0; i < out_table.length; i++) {
+                if (i == id) {
+                    temp = ""
+                    temp += "Name:<input type='text' id='e_name' placeholder='請輸入想修改的姓名'><br>Email:<input type='text' id='e_email' placeholder='請輸入想修改的信箱'><br>Content:<br><textarea rows='10' cols='40' id='e_content'></textarea><br><button onclick='change_OK()' id='OK'>修改</button><br>"
+                    document.getElementById("out_table").rows[i].cells[3].innerHTML = temp
+
+                    X_obj.onclick = function () {
+                        X_obj.hidden()
+                    }
+                    Y_obj.onclick = function () {
+                        Y_obj.hidden()
+                    }
+                }
+            }
+
+        }
+        function change_OK() {
+            out_table = document.getElementById("out_table").rows
+            key_email = document.getElementById("out_table").rows[cun_id].cells[1].innerHTML
+            OK_name = document.getElementById("e_name").value
+            OK_email = document.getElementById("e_email").value
+            OK_content = document.getElementById("e_content").value
+            temp = ""
+
+            if (OK_name != "") {
+                for (i = 0; i < json_info["chat"].length; i++) {
+                    if (json_info["chat"][i].email == key_email) {
+                        json_info["chat"][i].name = OK_name
+                    }
+                }
+            }
+            if (OK_email != "") {
+                for (i = 0; i < json_info["chat"].length; i++) {
+                    if (json_info["chat"][i].email == key_email) {
+                        json_info["chat"][i].email = OK_email
+                    }
+                }
+            }
+            if (OK_content != "") {
+                for (i = 0; i < json_info["chat"].length; i++) {
+                    if (json_info["chat"][i].email == key_email) {
+                        json_info["chat"][i].content = OK_content
+                    }
+                }
+            }
+            document.getElementById("e_name").parentNode.removeChild(document.getElementById("e_name"))
+            document.getElementById("e_email").parentNode.removeChild(document.getElementById("e_email"))
+            document.getElementById("e_content").parentNode.removeChild(document.getElementById("e_content"))
+            temp = temp + "<button onclick='c_delete()' id='" + delete_id + "'>刪除</button>"
+            temp = temp + "<button onclick='edit()' id='" + edit_id + "'>編輯</button>"
+            document.getElementById("out_table").rows[cun_id].cells[3].innerHTML = temp
+        }
+        rm_email = ""
+        function c_delete(id) {
+            out_table = document.getElementById("out_table").rows
+            id = id.split(' ')
+            id = id[1]
+            parseInt(id)
+            rm_email = document.getElementById("out_table").rows[id].cells[1].innerHTML
+            for (i = 0; i < out_table.length; i++) {
+                if (i == id) {
+                    for (i = 0; i < json_info["chat"].length; i++) {
+                        if (json_info["chat"][i].email == rm_email) {
+                            json_info["chat"].splice(i, 1)
+                        }
+                    }
+                }
+            }
+
+        }
+    </script>
+</body>
+
+</html>
